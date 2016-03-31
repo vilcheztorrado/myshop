@@ -1,0 +1,9 @@
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/service/PriceIncrease.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/repository/ProductDao.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/service/ProductManager.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/web/InventoryController.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/service/SimpleProductManager.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/web/PriceIncreaseFormController.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/repository/InMemoryProductDao.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/repository/JPAProductDao.java
+/home/josecarlos/Documents/workspace-sts-3.7.3.RELEASE/myshop/src/main/java/com/companyname/myshop/domain/Product.java

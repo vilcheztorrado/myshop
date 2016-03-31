@@ -1,0 +1,9 @@
+com/companyname/myshop/service/SimpleProductManager.class
+com/companyname/myshop/repository/InMemoryProductDao.class
+com/companyname/myshop/service/ProductManager.class
+com/companyname/myshop/web/InventoryController.class
+com/companyname/myshop/service/PriceIncrease.class
+com/companyname/myshop/domain/Product.class
+com/companyname/myshop/repository/JPAProductDao.class
+com/companyname/myshop/repository/ProductDao.class
+com/companyname/myshop/web/PriceIncreaseFormController.class
