@@ -22,6 +22,7 @@ public class Product implements Serializable {
 
 	private String description;
 	private Double price;
+	private boolean important = false;
     
     public Integer getId() {
         return id;
@@ -45,6 +46,14 @@ public class Product implements Serializable {
 	
 	public void setPrice(Double price) {
 	    this.price = price;
+	}
+	
+	public boolean isImportant() {
+		return this.important;
+	}
+	
+	public void setImportant(boolean value) {
+		this.important = value;
 	}
 	
 	public String toString() {

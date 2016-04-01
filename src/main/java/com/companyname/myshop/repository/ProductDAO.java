@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.companyname.myshop.domain.Product;
 
-public interface ProductDao {
+public interface ProductDAO {
 
     public List<Product> getProductList();
 

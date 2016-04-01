@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.companyname.myshop.domain.Product;
-import com.companyname.myshop.repository.ProductDao;
+import com.companyname.myshop.repository.ProductDAO;
 
 @Service
 public class SimpleProductManager implements ProductManager {
@@ -14,9 +14,9 @@ public class SimpleProductManager implements ProductManager {
 	private static final long serialVersionUID = 1L;
 	
 	@Autowired
-	private ProductDao productDao;
+	private ProductDAO productDao;
 	
-	public void setProductDao(ProductDao productDao) {
+	public void setProductDao(ProductDAO productDao) {
         this.productDao = productDao;
     }
 	
