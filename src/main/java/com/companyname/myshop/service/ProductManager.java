@@ -9,6 +9,6 @@ import com.companyname.myshop.domain.Product;
 
 @Component
 public interface ProductManager extends Serializable {
-	public void increasePrice(int percentage);
+	public void createProduct(String description, double price, boolean important);
     public List<Product> getProducts();
 }

@@ -21,7 +21,17 @@ header .logo {
 header nav {
     display: inline-block;
     float: right;
-    padding: 20px;
+    padding: 15px;
+}
+.admin-products {
+    background-image: url("../img/admin-products.png");
+    width: 30px;
+    display: block;
+    height: 30px;
+    background-size: 100%;
+}
+.admin-products:hover {
+    background-image: url("../img/admin-products-hover.png");
 }
 .bottom-shadow {
 	background-image: url("../img/bottom-shadow.png");

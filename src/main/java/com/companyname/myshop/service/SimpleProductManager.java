@@ -21,18 +21,14 @@ public class SimpleProductManager implements ProductManager {
     }
 	
 	public List<Product> getProducts() {
-	    return productDao.getProductList();        
+	    return productDao.getProductList();
 	}
-	
-	public void increasePrice(int percentage) {
-		List<Product> products = productDao.getProductList();
-		if (products != null) {
-		    for (Product product : products) {
-		        double newPrice = product.getPrice().doubleValue() * 
-		                            (100 + percentage)/100;
-		        product.setPrice(newPrice);
-		        productDao.saveProduct(product);
-		    }
-		}
+
+	public void createProduct(String description, double price, boolean important) {
+		Product prod = new Product();
+		prod.setDescription(description);
+		prod.setPrice(price);
+		prod.setImportant(important);
+		productDao.saveProduct(prod);
 	}
 }
