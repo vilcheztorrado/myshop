@@ -1,5 +1,5 @@
 #Folders
-/target
-/target/*
+target
+.settings
 #Files
 .git*
