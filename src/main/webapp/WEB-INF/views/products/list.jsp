@@ -1,4 +1,4 @@
-<%@ include file="./include.jsp" %>
+<%@ include file="/resources/common/include.jsp" %>
 
 <html>
   <head><title><fmt:message key="title"/></title></head>

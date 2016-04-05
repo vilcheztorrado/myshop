@@ -17,6 +17,7 @@ public class InMemoryProductDAO implements ProductDAO {
     }
 
     public void saveProduct(Product prod) {
+    	productList.add(prod);
     }
 
 }

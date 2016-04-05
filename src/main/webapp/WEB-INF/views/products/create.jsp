@@ -1,44 +1,34 @@
-<%@ include file="./include.jsp" %>
+<%@ include file="/resources/common/include.jsp" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 	<head>
-	  <title><fmt:message key="title"/></title>
-	  <style>
-	    .error { color: red; }
-	  </style>  
+	  <title><fmt:message key="title"/> - Product Creation</title>
+	  <link href="<c:url value="/resources/css/main.css" />" rel="stylesheet">
 	</head>
 	<body>
-	<h1><fmt:message key="createproduct.heading"/></h1>
-	<form:form method="post" commandName="productValidator">
-	  <table width="95%" bgcolor="f8f8ff" border="0" cellspacing="0" cellpadding="5">
-	    <tr>
-	      	<td align="right" width="20%">Description:</td>
-	        <td width="20%">
-	          <form:input path="description"/>
-	        </td>
-	        <td width="60%">
-	          <form:errors path="description" cssClass="error"/>
-	        </td>
-	    </tr>
-	    <tr>
-	      	<td align="right" width="20%">Price:</td>
-	        <td width="20%">
-	          <form:input path="price"/>
-	        </td>
-	        <td width="60%">
-	          <form:errors path="price" cssClass="error"/>
-	        </td>
-	    </tr>
-	    <tr>
-	      	<td align="right" width="20%">Important:</td>
-	        <td width="20%">
-	          <form:checkbox path="important"/>
-	        </td>
-	    </tr>
-	  </table>
-	  <br>
-	  <input type="submit" value="Execute">
-	</form:form>
-	<a href="<c:url value="list.htm"/>">Home</a>
+		<%@ include file="/resources/common/products/header.jsp" %>
+		<main class="content">
+			<form:form class="create-product-form" method="post" commandName="productValidator">
+			  <h3 class="content-title">Create a product</h3>
+			  <ul class="form-content">
+			    <li>
+			        <form:input path="description" placeholder="Description" required="required"/>
+			        <form:errors path="description" cssClass="error"/>
+			    </li>
+			    <li>
+			      	<p>Price:</p>
+			        <form:input path="price" type="number" min="0" step="any" required="required"/>
+			        <form:errors path="price" cssClass="error"/>
+			    </li>
+			    <li class="important">
+			    	<span>Important </span>
+			        <form:checkbox path="important"/>
+			    </li>
+			    <li>
+			    	<input type="submit" value="Create">
+			    </li>
+			  </ul>
+			</form:form>
+		</main>
 	</body>
 </html>

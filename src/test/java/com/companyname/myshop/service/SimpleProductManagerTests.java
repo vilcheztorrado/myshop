@@ -26,9 +26,7 @@ public class SimpleProductManagerTests {
 	
 	private static String TABLE_DESCRIPTION = "Table";
 	private static Double TABLE_PRICE = new Double(150.10); 
-	
-	private static int POSITIVE_PRICE_INCREASE = 10;
-	
+		
 	@Before
 	public void setUp() throws Exception {
 	    productManager = new SimpleProductManager();
@@ -72,41 +70,53 @@ public class SimpleProductManagerTests {
 	}
 	
 	@Test
-	public void testIncreasePriceWithNullListOfProducts() {
+	public void testCreateProductWithNullDescription() {
 		try {
 		    productManager = new SimpleProductManager();
 		    productManager.setProductDao(new InMemoryProductDAO(null));
-		    productManager.increasePrice(POSITIVE_PRICE_INCREASE);
+		    assertEquals(null, productManager.createProduct(null, 100.0, true));
 		}
 		catch(NullPointerException ex) {
-		    fail("Products list is null.");
+		    fail("Description is null!!");
 		}
 	}
 	
 	@Test
-    public void testIncreasePriceWithEmptyListOfProducts() {
-        try {
-            productManager = new SimpleProductManager();
-            productManager.setProductDao(new InMemoryProductDAO(new ArrayList<Product>()));
-            productManager.increasePrice(POSITIVE_PRICE_INCREASE);
-        }
-        catch(Exception ex) {
-            fail("Products list is empty.");
-        }           
-    }
+	public void testCreateProductWithEmptyDescription() {
+		try {
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(null));
+		    assertEquals(null, productManager.createProduct("", 100.0, true));
+		}
+		catch(NullPointerException ex) {
+		    fail("Description is Empty!!");
+		}
+	}
 	
 	@Test
-	public void testIncreasePriceWithPositivePercentage() {
-	    productManager.increasePrice(POSITIVE_PRICE_INCREASE);
-	    double expectedChairPriceWithIncrease = 22.55;
-	    double expectedTablePriceWithIncrease = 165.11;
+	public void testCreateProductWithNotValidPrice() {
+		try {
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(null));
+		    assertEquals(null, productManager.createProduct("An Item", -1, true));
+		}
+		catch(NullPointerException ex) {
+		    fail("Price is negative!!");
+		}
+	}
+	
+	@Test
+	public void testIncreasePriceWithAllCorrectData() {
+		String expectedDescriptionValue = "An Item";
+		double expectedPriceValue = 100.0;
+		productManager = new SimpleProductManager();
+	    productManager.setProductDao(new InMemoryProductDAO(new ArrayList<Product>()));
+	    productManager.createProduct("An Item", 100.0, true);
 	    
-	    List<Product> products = productManager.getProducts();      
+	    List<Product> products = productManager.getProducts(); 
 	    Product product = products.get(0);
-	    assertEquals(expectedChairPriceWithIncrease, product.getPrice(), 0);
-	    
-	    product = products.get(1);      
-	    assertEquals(expectedTablePriceWithIncrease, product.getPrice(), 0);       
+	    assertEquals("description comparator", expectedDescriptionValue, product.getDescription());    
+	    assertEquals(expectedPriceValue, product.getPrice(), 0);       
 	}
 
 }

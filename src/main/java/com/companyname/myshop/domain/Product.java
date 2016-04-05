@@ -8,6 +8,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name="products")
@@ -20,7 +23,9 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer id;
 
+	@NotBlank
 	private String description;
+	@Min(0)
 	private Double price;
 	private boolean important = false;
     

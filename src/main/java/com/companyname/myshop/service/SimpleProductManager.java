@@ -24,11 +24,15 @@ public class SimpleProductManager implements ProductManager {
 	    return productDao.getProductList();
 	}
 
-	public void createProduct(String description, double price, boolean important) {
+	public Product createProduct(String description, double price, boolean important) {
+		if(description == null || description.isEmpty() || price < 0) {
+			return null;
+		}
 		Product prod = new Product();
 		prod.setDescription(description);
 		prod.setPrice(price);
 		prod.setImportant(important);
 		productDao.saveProduct(prod);
+		return prod;
 	}
 }
