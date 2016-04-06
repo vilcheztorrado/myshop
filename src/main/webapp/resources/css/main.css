@@ -125,6 +125,7 @@ span.product-price {
     font-size: 15px;
     margin-top: 30px;
     width: 25%;
+    text-align: right;
 }
 /*Form*/
 .error {
