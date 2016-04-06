@@ -46,4 +46,12 @@ public class ProductDAOImpl implements ProductDAO {
         return prod;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<Product> getImportantProductList() {
+		Session session = this.sessionFactory.openSession();
+		List<Product> productList = session.createQuery("from Product where important = true").list();
+        session.close();
+        return productList;
+	}
+
 }

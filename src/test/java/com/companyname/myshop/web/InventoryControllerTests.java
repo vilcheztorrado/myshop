@@ -27,8 +27,6 @@ public class InventoryControllerTests {
         assertNotNull(modelAndView.getModel());
         @SuppressWarnings("unchecked")
         Map<String, Object> modelMap = (Map<String, Object>) modelAndView.getModel().get("model");
-        String nowValue = (String) modelMap.get("now");
-        assertNotNull(nowValue);
     }
 
 }

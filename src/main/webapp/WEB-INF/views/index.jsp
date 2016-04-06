@@ -10,29 +10,17 @@
 	<body>
 		<%@ include file="/resources/common/header.jsp" %>
 		<main class="content">
-			<article>
-				<h3 class="content-title">Most Popular Products</h3>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-				<div class="product"></div>
-			</article>
+			<h3 class="content-title">Most Popular Products</h3>
+			<c:forEach items="${model.products}" var="prod">
+		    	<div class="product">
+		    		<img src='${prod.getPhotoURL()}'>
+		    		<span><c:out value="${prod.description}"/></span>
+		    		<span class="product-price"><fmt:formatNumber value="${prod.price}" maxFractionDigits="2"/>$</span>
+		    	</div>
+		    	<div class="product-desc">
+		    		
+		    	</div>
+		    </c:forEach>
 		</main>
 		<%@ include file="/resources/common/footer.jsp" %>
 	</body>

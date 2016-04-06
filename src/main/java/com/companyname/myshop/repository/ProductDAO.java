@@ -12,4 +12,6 @@ public interface ProductDAO {
 
 	public Product getProduct(String id);
 
+	public List<Product> getImportantProductList();
+
 }

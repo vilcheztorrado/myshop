@@ -37,9 +37,7 @@ public class InventoryController {
     public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        String now = (new Date()).toString();
         Map<String, Object> myModel = new HashMap<String, Object>();
-        myModel.put("now", now);
         myModel.put("products", this.productManager.getProducts());
 
         return new ModelAndView("products/list", "model", myModel);

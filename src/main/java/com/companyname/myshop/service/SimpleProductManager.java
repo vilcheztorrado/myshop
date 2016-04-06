@@ -40,4 +40,8 @@ public class SimpleProductManager implements ProductManager {
 	public Product getProduct(String id) {
 		return productDao.getProduct(id);
 	}
+
+	public List<Product> getImportantProducts() {
+		return productDao.getImportantProductList();
+	}
 }

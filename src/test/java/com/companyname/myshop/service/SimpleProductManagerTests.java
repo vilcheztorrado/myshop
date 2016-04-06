@@ -20,12 +20,15 @@ public class SimpleProductManagerTests {
 	private List<Product> products;
 	
 	private static int PRODUCT_COUNT = 2;
+	private static int IMPORTANT_PRODUCT_COUNT = 1;
 	
 	private static Double CHAIR_PRICE = new Double(20.50);
 	private static String CHAIR_DESCRIPTION = "Chair";
+	private static boolean CHAIR_IMPORTANT = false;
 	
 	private static String TABLE_DESCRIPTION = "Table";
-	private static Double TABLE_PRICE = new Double(150.10); 
+	private static Double TABLE_PRICE = new Double(150.10);
+	private static boolean TABLE_IMPORTANT = true;
 		
 	@Before
 	public void setUp() throws Exception {
@@ -34,13 +37,15 @@ public class SimpleProductManagerTests {
 	    
 	    // stub up a list of products
 	    Product product = new Product();
-	    product.setDescription("Chair");
+	    product.setDescription(CHAIR_DESCRIPTION);
 	    product.setPrice(CHAIR_PRICE);
+	    product.setImportant(CHAIR_IMPORTANT);
 	    products.add(product);
 	    
 	    product = new Product();
-	    product.setDescription("Table");
+	    product.setDescription(TABLE_DESCRIPTION);
 	    product.setPrice(TABLE_PRICE);
+	    product.setImportant(TABLE_IMPORTANT);
 	    products.add(product);
 	    
 	    ProductDAO productDao = new InMemoryProductDAO(products);
@@ -112,19 +117,15 @@ public class SimpleProductManagerTests {
 	}
 	
 	@Test
-	public void testIncreasePriceWithAllCorrectData() {
-		String expectedDescriptionValue = "An Item";
-		double expectedPriceValue = 100.0;
-		byte[] image = new byte[4];
-	    image[0] = image[1] = image[2] = image[3] = 1;
-		productManager = new SimpleProductManager();
-	    productManager.setProductDao(new InMemoryProductDAO(new ArrayList<Product>()));
-	    productManager.createProduct("An Item", 100.0, true, image);
-	    
-	    List<Product> products = productManager.getProducts(); 
+	public void testGetImportantProducts() {
+	    List<Product> products = productManager.getImportantProducts();
+	    assertNotNull(products);        
+	    assertEquals(IMPORTANT_PRODUCT_COUNT, products.size());
+	
 	    Product product = products.get(0);
-	    assertEquals("description comparator", expectedDescriptionValue, product.getDescription());    
-	    assertEquals(expectedPriceValue, product.getPrice(), 0);       
+	    assertEquals(TABLE_DESCRIPTION, product.getDescription());
+	    assertEquals(TABLE_PRICE, product.getPrice());
+	    assertEquals(TABLE_IMPORTANT, product.isImportant());
 	}
 
 }

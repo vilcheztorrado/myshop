@@ -1,5 +1,6 @@
 package com.companyname.myshop.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.companyname.myshop.domain.Product;
@@ -22,6 +23,16 @@ public class InMemoryProductDAO implements ProductDAO {
 
 	public Product getProduct(String id) {
 		return null;
+	}
+
+	public List<Product> getImportantProductList() {
+		List<Product> importantProducts = new ArrayList<Product>();
+		for(int i = 0; i < productList.size(); i++) {
+			if(productList.get(i).isImportant()) {
+				importantProducts.add(productList.get(i));
+			}
+		}
+		return importantProducts;
 	}
 
 }
