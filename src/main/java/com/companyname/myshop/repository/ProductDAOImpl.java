@@ -39,4 +39,11 @@ public class ProductDAOImpl implements ProductDAO {
         session.close();
     }
 
+	public Product getProduct(String id) {
+		Session session = this.sessionFactory.openSession();
+        Product prod = (Product) session.createQuery("from Product where id = " + id).list().get(0);
+        session.close();
+        return prod;
+	}
+
 }

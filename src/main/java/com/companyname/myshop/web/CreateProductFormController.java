@@ -29,10 +29,11 @@ public class CreateProductFormController {
     public String onSubmit(@Valid ProductValidator productValidator, BindingResult result)
     {
         if (result.hasErrors()) {
+        	System.out.println(result.getAllErrors().get(0));
             return "products/create";
         }
 
-        productManager.createProduct(productValidator.getDescription(), productValidator.getPrice(), productValidator.getImportant());
+        productManager.createProduct(productValidator.getDescription(), productValidator.getPrice(), productValidator.getImportant(), productValidator.getPhoto().getBytes());
 
         return "redirect:/products/list.htm";
     }

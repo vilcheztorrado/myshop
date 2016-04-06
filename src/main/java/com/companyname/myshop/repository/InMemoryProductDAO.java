@@ -20,4 +20,8 @@ public class InMemoryProductDAO implements ProductDAO {
     	productList.add(prod);
     }
 
+	public Product getProduct(String id) {
+		return null;
+	}
+
 }

@@ -10,4 +10,6 @@ public interface ProductDAO {
 
     public void saveProduct(Product prod);
 
+	public Product getProduct(String id);
+
 }

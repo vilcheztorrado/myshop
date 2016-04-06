@@ -8,7 +8,7 @@
 	<body>
 		<%@ include file="/resources/common/products/header.jsp" %>
 		<main class="content">
-			<form:form class="create-product-form" method="post" commandName="productValidator">
+			<form:form class="create-product-form" enctype="multipart/form-data" method="post" commandName="productValidator">
 			  <h3 class="content-title">Create a product</h3>
 			  <ul class="form-content">
 			    <li>
@@ -23,6 +23,11 @@
 			    <li class="important">
 			    	<span>Important </span>
 			        <form:checkbox path="important"/>
+			    </li>
+			    <li>
+			      	<p>Photo:</p>
+			        <form:input path="photo" type="file"/>
+			        <form:errors path="price" cssClass="error"/>
 			    </li>
 			    <li>
 			    	<input type="submit" value="Create">

@@ -24,7 +24,7 @@ public class SimpleProductManager implements ProductManager {
 	    return productDao.getProductList();
 	}
 
-	public Product createProduct(String description, double price, boolean important) {
+	public Product createProduct(String description, double price, boolean important, byte[] photo) {
 		if(description == null || description.isEmpty() || price < 0) {
 			return null;
 		}
@@ -32,7 +32,12 @@ public class SimpleProductManager implements ProductManager {
 		prod.setDescription(description);
 		prod.setPrice(price);
 		prod.setImportant(important);
+		prod.setPhoto(photo);
 		productDao.saveProduct(prod);
 		return prod;
+	}
+
+	public Product getProduct(String id) {
+		return productDao.getProduct(id);
 	}
 }

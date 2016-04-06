@@ -12,8 +12,12 @@
 	    <a class="add-product-icon" href="<c:url value="create.htm"/>">+</a>
 	    <c:forEach items="${model.products}" var="prod">
 	    	<div class="product">
+	    		<img src='${prod.getPhotoURL()}'>
 	    		<span><c:out value="${prod.description}"/></span>
 	    		<span class="product-price"><fmt:formatNumber value="${prod.price}" maxFractionDigits="2"/>$</span>
+	    	</div>
+	    	<div class="product-desc">
+	    		
 	    	</div>
 	    </c:forEach>
 	</main>

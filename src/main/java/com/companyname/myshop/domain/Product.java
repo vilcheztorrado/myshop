@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -28,6 +29,8 @@ public class Product implements Serializable {
 	@Min(0)
 	private Double price;
 	private boolean important = false;
+	@Type(type="org.hibernate.type.BinaryType")
+	private byte[] photo;
     
     public Integer getId() {
         return id;
@@ -61,10 +64,19 @@ public class Product implements Serializable {
 		this.important = value;
 	}
 	
-	public String toString() {
-	    StringBuffer buffer = new StringBuffer();
-	    buffer.append("Description: " + description + ";");
-	    buffer.append("Price: " + price);
-	    return buffer.toString();
+	public byte[] getPhoto() {
+	    return photo;
+	}
+	
+	public String getPhotoURL() {
+		if (photo != null) {
+			return "/myshop/image?id=" + id;
+		} else {
+			return "";
+		}
+	}
+	
+	public void setPhoto(byte[] srcData) {
+		photo = srcData;
 	}
 }
