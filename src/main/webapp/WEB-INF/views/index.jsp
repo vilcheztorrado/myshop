@@ -17,9 +17,6 @@
 		    		<span><c:out value="${prod.description}"/></span>
 		    		<span class="product-price"><fmt:formatNumber value="${prod.price}" maxFractionDigits="2"/>$</span>
 		    	</div>
-		    	<div class="product-desc">
-		    		
-		    	</div>
 		    </c:forEach>
 		</main>
 		<%@ include file="/resources/common/footer.jsp" %>

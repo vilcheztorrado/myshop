@@ -1,7 +1,6 @@
 package com.companyname.myshop.web;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,9 +12,11 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.companyname.myshop.domain.Product;
 import com.companyname.myshop.service.ProductManager;
 
 @Controller
@@ -27,6 +28,10 @@ public class InventoryController {
 	@Autowired
     private ProductManager productManager;
 	
+    public void setProductManager(ProductManager productManager) {
+        this.productManager = productManager;
+    }
+	
 	@RequestMapping(value="")
     public ModelAndView homepage(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,7 +39,7 @@ public class InventoryController {
     }
 
     @RequestMapping(value="/list.htm")
-    public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response)
+    public ModelAndView productList(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         Map<String, Object> myModel = new HashMap<String, Object>();
@@ -43,7 +48,13 @@ public class InventoryController {
         return new ModelAndView("products/list", "model", myModel);
     }
     
-    public void setProductManager(ProductManager productManager) {
-        this.productManager = productManager;
+    @RequestMapping(value="/{id}")
+    public ModelAndView productDetail(@PathVariable("id") String id, HttpServletRequest request)
+            throws ServletException, IOException {
+
+        Map<String, Object> myModel = new HashMap<String, Object>();
+        myModel.put("product", this.productManager.getProduct(id));
+
+        return new ModelAndView("products/productDetail", "model", myModel);
     }
 }
