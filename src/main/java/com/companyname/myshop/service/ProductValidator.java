@@ -1,7 +1,5 @@
 package com.companyname.myshop.service;
 
-import java.sql.Blob;
-
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -14,7 +12,10 @@ public class ProductValidator {
     @NotEmpty
     private String description;
     private boolean important;
-    private CommonsMultipartFile photo;
+    private CommonsMultipartFile photo = null;
+    private byte[] photoPreloaded;
+    private int existingProductId;
+    private boolean removedPhoto = false;
 
     public void setPrice(double newPrice) {
         price = newPrice;
@@ -46,5 +47,33 @@ public class ProductValidator {
     
     public void setPhoto(CommonsMultipartFile newPhoto) {
     	photo = newPhoto;
+    }
+    
+    public byte[] getPhotoPreloaded() {
+    	return photoPreloaded;
+    }
+    
+    public void setPhotoPreloaded(byte[] newPhoto) {
+    	photoPreloaded = newPhoto;
+    }
+    
+    public boolean existPhoto() {
+    	return photoPreloaded != null && photoPreloaded.length > 0;
+    }
+    
+    public int getExistingProductId() {
+    	return existingProductId;
+    }
+    
+    public void setExistingProductId(int id) {
+    	existingProductId = id;
+    }
+    
+    public boolean isRemovedPhoto() {
+    	return removedPhoto;
+    }
+    
+    public void setRemovedPhoto(boolean newValue) {
+    	removedPhoto = newValue;
     }
 }

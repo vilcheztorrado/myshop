@@ -81,7 +81,7 @@ public class SimpleProductManagerTests {
 		    image[0] = image[1] = image[2] = image[3] = 1;
 		    productManager = new SimpleProductManager();
 		    productManager.setProductDao(new InMemoryProductDAO(null));
-		    assertEquals(null, productManager.createProduct(null, 100.0, true, image));
+		    assertNull("Not valid description", productManager.createProduct(null, 100.0, true, image));
 		}
 		catch(NullPointerException ex) {
 		    fail("Description is null!!");
@@ -95,7 +95,7 @@ public class SimpleProductManagerTests {
 		    image[0] = image[1] = image[2] = image[3] = 1;
 		    productManager = new SimpleProductManager();
 		    productManager.setProductDao(new InMemoryProductDAO(null));
-		    assertEquals(null, productManager.createProduct("", 100.0, true, image));
+		    assertNull("Empty description", productManager.createProduct("", 100.0, true, image));
 		}
 		catch(NullPointerException ex) {
 		    fail("Description is Empty!!");
@@ -109,10 +109,152 @@ public class SimpleProductManagerTests {
 		    image[0] = image[1] = image[2] = image[3] = 1;
 		    productManager = new SimpleProductManager();
 		    productManager.setProductDao(new InMemoryProductDAO(null));
-		    assertEquals(null, productManager.createProduct("An Item", -1, true, image));
+		    assertNull("Not valid price", productManager.createProduct("An Item", -1, true, image));
 		}
 		catch(NullPointerException ex) {
 		    fail("Price is negative!!");
+		}
+	}
+	
+	@Test
+	public void testCreateProduct() {
+		try {
+			byte[] image = new byte[4];
+			List<Product> emptyList = new ArrayList<Product>();
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(emptyList));
+		    assertNotNull("Valid Object", productManager.createProduct("An Item", 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("Product not created!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithNotValidID() {
+		try {
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(null));
+		    assertNull("Not Valid ID", productManager.editProduct(null, null, 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("The product not exists!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithEmptyID() {
+		try {
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(null));
+		    assertNull("Empty ID", productManager.editProduct("", null, 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("The product not exists!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithNotExistingID() {
+		try {
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(null));
+		    assertNull("Not Existing ID", productManager.editProduct("5", null, 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("The product not exists!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithNullDescription() {
+		try {
+			List<Product> list = new ArrayList<Product>();
+			Product p = new Product();
+			p.setId(4);
+			p.setDescription("A product");
+			p.setImportant(false);
+			list.add(p);
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(list));
+		    assertNull("Not valid description", productManager.editProduct("4", null, 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("Description is null!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithEmptyDescription() {
+		try {
+			List<Product> list = new ArrayList<Product>();
+			Product p = new Product();
+			p.setId(4);
+			p.setDescription("A product");
+			p.setImportant(false);
+			list.add(p);
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(list));
+		    assertNull("Empty description", productManager.editProduct("4", "", 100.0, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("Description is Empty!!");
+		}
+	}
+	
+	@Test
+	public void testEditProductWithNotValidPrice() {
+		try {
+			List<Product> list = new ArrayList<Product>();
+			Product p = new Product();
+			p.setId(4);
+			p.setDescription("A product");
+			p.setImportant(false);
+			list.add(p);
+			byte[] image = new byte[4];
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(list));
+		    assertNull("Not valid price", productManager.editProduct("4", "An Item", -1, true, image));
+		}
+		catch(NullPointerException ex) {
+		    fail("Price is negative!!");
+		}
+	}
+	
+	@Test
+	public void testEditProduct() {
+		try {
+			byte[] image = new byte[4];
+			List<Product> list = new ArrayList<Product>();
+			Product p = new Product();
+			p.setId(4);
+			p.setDescription("A product");
+			p.setImportant(false);
+			list.add(p);
+		    image[0] = image[1] = image[2] = image[3] = 1;
+		    productManager = new SimpleProductManager();
+		    productManager.setProductDao(new InMemoryProductDAO(list));
+		    Product prod = productManager.editProduct("4", "An Item", 100.0, true, image);
+		    assertNotNull("Valid Object", prod);
+		    assertEquals("An Item", prod.getDescription());
+		    assertEquals(100.0, prod.getPrice(), 10);
+		    assertTrue(prod.isImportant());
+		    assertEquals(image, prod.getPhoto());
+		}
+		catch(NullPointerException ex) {
+		    fail("Product not edited!!");
 		}
 	}
 	

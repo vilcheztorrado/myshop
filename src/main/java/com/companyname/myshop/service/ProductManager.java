@@ -13,4 +13,6 @@ public interface ProductManager extends Serializable {
     public List<Product> getProducts();
 	public Product getProduct(String id);
 	public List<Product> getImportantProducts();
+	public Product editProduct(String id, String description, double price, boolean important, byte[] photo);
+	public Product editProduct(String id, String description, double price, boolean important);
 }

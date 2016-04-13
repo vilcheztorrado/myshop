@@ -9,6 +9,7 @@
   	<%@ include file="/resources/common/products/header.jsp" %>
   	<main class="content">
 	    <h3 class="content-title">Product Detail</h3>
+	    <a href="edit/${model.product.id}" class="edit-product-button">Edit Product</a>
     	<div class="product full-image">
     		<img src='${model.product.getPhotoURL()}'>
     	</div>

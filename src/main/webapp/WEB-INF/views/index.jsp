@@ -13,9 +13,11 @@
 			<h3 class="content-title">Most Popular Products</h3>
 			<c:forEach items="${model.products}" var="prod">
 		    	<div class="product">
-		    		<img src='${prod.getPhotoURL()}'>
-		    		<span><c:out value="${prod.description}"/></span>
-		    		<span class="product-price"><fmt:formatNumber value="${prod.price}" maxFractionDigits="2"/>$</span>
+		    		<a href="products/${prod.getId()}">
+			    		<img src='${prod.getPhotoURL()}'>
+			    		<span><c:out value="${prod.description}"/></span>
+			    		<span class="product-price"><fmt:formatNumber value="${prod.price}" maxFractionDigits="2"/>$</span>
+			    	</a>
 		    	</div>
 		    </c:forEach>
 		</main>

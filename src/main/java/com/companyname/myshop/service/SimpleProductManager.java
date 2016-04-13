@@ -44,4 +44,29 @@ public class SimpleProductManager implements ProductManager {
 	public List<Product> getImportantProducts() {
 		return productDao.getImportantProductList();
 	}
+
+	public Product editProduct(String id, String description, double price, boolean important, byte[] photo) {
+		if(id == null || id.isEmpty() || description == null || description.isEmpty() || price < 0) {
+			return null;
+		}
+		Product prod = productDao.getProduct(id);
+		prod.setDescription(description);
+		prod.setPrice(price);
+		prod.setImportant(important);
+		prod.setPhoto(photo);
+		productDao.saveProduct(prod);
+		return prod;
+	}
+	
+	public Product editProduct(String id, String description, double price, boolean important) {
+		if(id == null || id.isEmpty() || description == null || description.isEmpty() || price < 0) {
+			return null;
+		}
+		Product prod = productDao.getProduct(id);
+		prod.setDescription(description);
+		prod.setPrice(price);
+		prod.setImportant(important);
+		productDao.saveProduct(prod);
+		return prod;
+	}
 }

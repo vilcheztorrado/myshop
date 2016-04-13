@@ -22,6 +22,13 @@ public class InMemoryProductDAO implements ProductDAO {
     }
 
 	public Product getProduct(String id) {
+		if (productList != null) {
+			for (int i = 0; i < productList.size(); i++) {
+				if (productList.get(i).getId().toString().equals(id)) {
+					return productList.get(i);
+				}
+			}
+		}
 		return null;
 	}
 

@@ -69,7 +69,7 @@ public class Product implements Serializable {
 	}
 	
 	public String getPhotoURL() {
-		if (photo != null) {
+		if (photo != null && photo.length > 0) {
 			return "/myshop/image?id=" + id;
 		} else {
 			return "";
